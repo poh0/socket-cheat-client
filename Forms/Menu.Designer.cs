@@ -28,96 +28,105 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.DiscordBTN = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.BunnyhopCheck = new System.Windows.Forms.CheckBox();
-            this.GithubBTN = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.ESPCheck = new System.Windows.Forms.CheckBox();
+            this.ZbaseLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.statusLabel = new System.Windows.Forms.Label();
+            this.boxesp_checkbox = new System.Windows.Forms.CheckBox();
+            this.healthbar_checkbox = new System.Windows.Forms.CheckBox();
+            this.snaplines_checkbox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
-            // 
-            // DiscordBTN
-            // 
-            this.DiscordBTN.Location = new System.Drawing.Point(12, 35);
-            this.DiscordBTN.Name = "DiscordBTN";
-            this.DiscordBTN.Size = new System.Drawing.Size(166, 23);
-            this.DiscordBTN.TabIndex = 0;
-            this.DiscordBTN.Text = "Join Discord (Remove Me)";
-            this.DiscordBTN.UseVisualStyleBackColor = true;
-            this.DiscordBTN.Click += new System.EventHandler(this.DiscordBTN_Click);
-            // 
-            // label1
-            // 
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(360, 23);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Thanks for checking out ZBase";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // BunnyhopCheck
             // 
             this.BunnyhopCheck.AutoSize = true;
-            this.BunnyhopCheck.Location = new System.Drawing.Point(12, 129);
+            this.BunnyhopCheck.Location = new System.Drawing.Point(12, 12);
             this.BunnyhopCheck.Name = "BunnyhopCheck";
-            this.BunnyhopCheck.Size = new System.Drawing.Size(194, 17);
+            this.BunnyhopCheck.Size = new System.Drawing.Size(51, 17);
             this.BunnyhopCheck.TabIndex = 2;
-            this.BunnyhopCheck.Text = "Bunny Hop (Space) - Sample Cheat";
+            this.BunnyhopCheck.Text = "Bhop";
             this.BunnyhopCheck.UseVisualStyleBackColor = true;
-            // 
-            // GithubBTN
-            // 
-            this.GithubBTN.Location = new System.Drawing.Point(203, 35);
-            this.GithubBTN.Name = "GithubBTN";
-            this.GithubBTN.Size = new System.Drawing.Size(166, 23);
-            this.GithubBTN.TabIndex = 4;
-            this.GithubBTN.Text = "Github Page (Remove Me)";
-            this.GithubBTN.UseVisualStyleBackColor = true;
-            this.GithubBTN.Click += new System.EventHandler(this.GithubBTN_Click);
-            // 
-            // label3
-            // 
-            this.label3.Location = new System.Drawing.Point(9, 61);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(360, 39);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "A function to show/hide the menu is already integrated. use Insert\r\n";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label4
-            // 
-            this.label4.Location = new System.Drawing.Point(9, 87);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(360, 23);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "- Coopyy";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.BunnyhopCheck.CheckedChanged += new System.EventHandler(this.BunnyhopCheck_CheckedChanged);
             // 
             // ESPCheck
             // 
             this.ESPCheck.AutoSize = true;
-            this.ESPCheck.Location = new System.Drawing.Point(12, 152);
+            this.ESPCheck.Location = new System.Drawing.Point(12, 35);
             this.ESPCheck.Name = "ESPCheck";
-            this.ESPCheck.Size = new System.Drawing.Size(86, 17);
+            this.ESPCheck.Size = new System.Drawing.Size(104, 17);
             this.ESPCheck.TabIndex = 7;
-            this.ESPCheck.Text = "Overlay ESP";
+            this.ESPCheck.Text = "Visuals (Overlay)";
             this.ESPCheck.UseVisualStyleBackColor = true;
+            this.ESPCheck.CheckedChanged += new System.EventHandler(this.ESPCheck_CheckedChanged);
+            // 
+            // ZbaseLinkLabel
+            // 
+            this.ZbaseLinkLabel.AutoSize = true;
+            this.ZbaseLinkLabel.Location = new System.Drawing.Point(334, 165);
+            this.ZbaseLinkLabel.Name = "ZbaseLinkLabel";
+            this.ZbaseLinkLabel.Size = new System.Drawing.Size(38, 13);
+            this.ZbaseLinkLabel.TabIndex = 8;
+            this.ZbaseLinkLabel.TabStop = true;
+            this.ZbaseLinkLabel.Text = "ZBase";
+            this.ZbaseLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ZbaseLinkLabel_LinkClicked);
+            // 
+            // statusLabel
+            // 
+            this.statusLabel.AutoSize = true;
+            this.statusLabel.Location = new System.Drawing.Point(309, 9);
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(70, 13);
+            this.statusLabel.TabIndex = 9;
+            this.statusLabel.Text = "Connecting...";
+            // 
+            // boxesp_checkbox
+            // 
+            this.boxesp_checkbox.AutoSize = true;
+            this.boxesp_checkbox.Location = new System.Drawing.Point(22, 59);
+            this.boxesp_checkbox.Name = "boxesp_checkbox";
+            this.boxesp_checkbox.Size = new System.Drawing.Size(64, 17);
+            this.boxesp_checkbox.TabIndex = 10;
+            this.boxesp_checkbox.Text = "Box esp";
+            this.boxesp_checkbox.UseVisualStyleBackColor = true;
+            this.boxesp_checkbox.CheckedChanged += new System.EventHandler(this.boxesp_checkbox_CheckedChanged);
+            // 
+            // healthbar_checkbox
+            // 
+            this.healthbar_checkbox.AutoSize = true;
+            this.healthbar_checkbox.Location = new System.Drawing.Point(22, 82);
+            this.healthbar_checkbox.Name = "healthbar_checkbox";
+            this.healthbar_checkbox.Size = new System.Drawing.Size(72, 17);
+            this.healthbar_checkbox.TabIndex = 11;
+            this.healthbar_checkbox.Text = "Healthbar";
+            this.healthbar_checkbox.UseVisualStyleBackColor = true;
+            this.healthbar_checkbox.CheckedChanged += new System.EventHandler(this.healthbar_checkbox_CheckedChanged);
+            // 
+            // snaplines_checkbox
+            // 
+            this.snaplines_checkbox.AutoSize = true;
+            this.snaplines_checkbox.Location = new System.Drawing.Point(22, 105);
+            this.snaplines_checkbox.Name = "snaplines_checkbox";
+            this.snaplines_checkbox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.snaplines_checkbox.Size = new System.Drawing.Size(72, 17);
+            this.snaplines_checkbox.TabIndex = 12;
+            this.snaplines_checkbox.Text = "Snaplines";
+            this.snaplines_checkbox.UseVisualStyleBackColor = true;
+            this.snaplines_checkbox.CheckedChanged += new System.EventHandler(this.snaplines_checkbox_CheckedChanged);
             // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 187);
+            this.Controls.Add(this.snaplines_checkbox);
+            this.Controls.Add(this.healthbar_checkbox);
+            this.Controls.Add(this.boxesp_checkbox);
+            this.Controls.Add(this.statusLabel);
+            this.Controls.Add(this.ZbaseLinkLabel);
             this.Controls.Add(this.ESPCheck);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.GithubBTN);
             this.Controls.Add(this.BunnyhopCheck);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.DiscordBTN);
             this.Name = "Menu";
-            this.Text = "ZBase New Project";
+            this.Text = "socket-cheat";
             this.Load += new System.EventHandler(this.Menu_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -125,14 +134,13 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button DiscordBTN;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox BunnyhopCheck;
-        private System.Windows.Forms.Button GithubBTN;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox ESPCheck;
+        private System.Windows.Forms.LinkLabel ZbaseLinkLabel;
+        private System.Windows.Forms.Label statusLabel;
+        private System.Windows.Forms.CheckBox boxesp_checkbox;
+        private System.Windows.Forms.CheckBox healthbar_checkbox;
+        private System.Windows.Forms.CheckBox snaplines_checkbox;
     }
 }
 

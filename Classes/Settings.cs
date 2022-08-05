@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,19 @@ namespace ZBase.Classes
 {
     public class Settings
     {
-        public bool BunnyhopEnabled;
-        public bool ESP;
+        [JsonProperty("bhop")]
+        public bool BunnyhopEnabled { get; set; }
+
+        [JsonProperty("esp")]
+        public bool ESP { get; set; }
+
+        [JsonProperty("box_esp")]
+        public bool box_esp { get; set; }
+
+        [JsonProperty("healthbar_esp")]
+        public bool healthbar_esp { get; set; }
+
+        [JsonProperty("snaplines")]
+        public bool snaplines { get; set; }
     }
 }

@@ -11,12 +11,18 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ZBase.Cheats;
 using ZBase.Classes;
+using ZBase.Networking;
 using ZBase.Utilities;
+using SocketIOClient;
+using Newtonsoft.Json;
 
 namespace ZBase
 {
     public partial class Menu : Form
     {
+
+        SocketIO client;
+
         public Menu()
         {
             InitializeComponent();
@@ -24,12 +30,6 @@ namespace ZBase
             {
                 OffsetUpdater.UpdateOffsets();
                 #region Start Threads
-                // found the process and everything, lets start our cheats in a new thread
-                new Thread(() =>
-                {
-                    Thread.CurrentThread.IsBackground = true;
-                    CheckMenu();
-                }).Start();
 
                 Tools.InitializeGlobals();
 
@@ -51,31 +51,91 @@ namespace ZBase
 
         private void Menu_Load(object sender, EventArgs e)
         {
-            TopMost = true; // make this hover over the game, can remove if you want
+#if DEBUG
+            TopMost = true;
+#else
+            TopMost = false;
+#endif
+
+            client = new SocketIO(Sockets.API_URL);
+
+            client.On("getOptions", UpdateSettings);
+            client.OnConnected += OnClientConnected;
+            client.OnDisconnected += OnClientDisconnected;
+
+            client.ConnectAsync();
         }
 
-        public void CheckMenu()
+        public void UpdateSettings(SocketIOResponse response)
         {
-            // Here we make the main variables equal to what our menu checkboxes say
-            while (true)
+            string jsonresp = response.GetValue().ToString();
+
+            var dto = JsonConvert.DeserializeObject<Settings>(jsonresp);
+
+            Main.S = dto;
+
+            UpdateMenu();
+        }
+
+        public void UpdateMenu()
+        {
+            Invoke((MethodInvoker)delegate
             {
-                Main.S.BunnyhopEnabled = BunnyhopCheck.Checked;
-                Main.S.ESP = ESPCheck.Checked;
-                if ((Memory.GetAsyncKeyState(Keys.VK_INSERT) & 1) > 0)
-                    Visible = !Visible;
-
-                Thread.Sleep(50); // Greatly reduces cpu usage
-            }
+                ESPCheck.Checked = Main.S.ESP;
+                BunnyhopCheck.Checked = Main.S.BunnyhopEnabled;
+                boxesp_checkbox.Checked = Main.S.box_esp;
+                healthbar_checkbox.Checked = Main.S.healthbar_esp;
+                snaplines_checkbox.Checked = Main.S.snaplines;
+            });
         }
 
-        private void DiscordBTN_Click(object sender, EventArgs e)
+        public async void OnClientConnected(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://discordapp.com/invite/cFmAYvm");
+            statusLabel.Invoke((MethodInvoker)delegate
+            {
+                statusLabel.Text = "Connected";
+                statusLabel.ForeColor = Color.Green;
+            });
+            await client.EmitAsync("addClient", Sockets.USER);
         }
 
-        private void GithubBTN_Click(object sender, EventArgs e)
+        public void OnClientDisconnected(object sender, string reason)
+        {
+            statusLabel.Invoke((MethodInvoker)delegate
+            {
+                statusLabel.Text = "Disconnected";
+                statusLabel.ForeColor = Color.Red;
+            });
+        }
+
+        private void ZbaseLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://github.com/Coopyy/ZBase-CSGO");
+        }
+
+        private void ESPCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            Main.S.ESP = ESPCheck.Checked;
+        }
+
+        private void BunnyhopCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            Main.S.BunnyhopEnabled = BunnyhopCheck.Checked;
+        }
+
+        private void boxesp_checkbox_CheckedChanged(object sender, EventArgs e)
+        {
+            Main.S.box_esp = boxesp_checkbox.Checked;
+        }
+
+        private void healthbar_checkbox_CheckedChanged(object sender, EventArgs e)
+        {
+            Main.S.healthbar_esp = healthbar_checkbox.Checked;
+        }
+
+        private void snaplines_checkbox_CheckedChanged(object sender, EventArgs e)
+        {
+            Main.S.snaplines = snaplines_checkbox.Checked;
         }
     }
 }
