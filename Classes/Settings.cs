@@ -23,5 +23,8 @@ namespace ZBase.Classes
 
         [JsonProperty("snaplines")]
         public bool snaplines { get; set; }
+
+        [JsonProperty("fov_value")]
+        public int fov { get; set; }
     }
 }

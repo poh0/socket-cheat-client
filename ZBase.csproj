@@ -101,6 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cheats\Bunnyhop.cs" />
+    <Compile Include="Cheats\Misc.cs" />
     <Compile Include="Cheats\Visuals.cs" />
     <Compile Include="Classes\Engine.cs" />
     <Compile Include="Classes\Entity.cs" />

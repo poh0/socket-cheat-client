@@ -56,6 +56,7 @@ namespace ZBase
 #else
             TopMost = false;
 #endif
+            fov_value_label.Text = fov_trackbar.Value.ToString();
 
             client = new SocketIO(Sockets.API_URL);
 
@@ -136,6 +137,12 @@ namespace ZBase
         private void snaplines_checkbox_CheckedChanged(object sender, EventArgs e)
         {
             Main.S.snaplines = snaplines_checkbox.Checked;
+        }
+
+        private void fov_trackbar_Scroll(object sender, EventArgs e)
+        {
+            Misc.SetFov(fov_trackbar.Value);
+            fov_value_label.Text = fov_trackbar.Value.ToString();
         }
     }
 }

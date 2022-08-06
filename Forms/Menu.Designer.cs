@@ -35,6 +35,10 @@
             this.boxesp_checkbox = new System.Windows.Forms.CheckBox();
             this.healthbar_checkbox = new System.Windows.Forms.CheckBox();
             this.snaplines_checkbox = new System.Windows.Forms.CheckBox();
+            this.fov_trackbar = new System.Windows.Forms.TrackBar();
+            this.label1 = new System.Windows.Forms.Label();
+            this.fov_value_label = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.fov_trackbar)).BeginInit();
             this.SuspendLayout();
             // 
             // BunnyhopCheck
@@ -113,11 +117,42 @@
             this.snaplines_checkbox.UseVisualStyleBackColor = true;
             this.snaplines_checkbox.CheckedChanged += new System.EventHandler(this.snaplines_checkbox_CheckedChanged);
             // 
+            // fov_trackbar
+            // 
+            this.fov_trackbar.Location = new System.Drawing.Point(136, 31);
+            this.fov_trackbar.Maximum = 180;
+            this.fov_trackbar.Name = "fov_trackbar";
+            this.fov_trackbar.Size = new System.Drawing.Size(104, 45);
+            this.fov_trackbar.TabIndex = 13;
+            this.fov_trackbar.Value = 90;
+            this.fov_trackbar.Scroll += new System.EventHandler(this.fov_trackbar_Scroll);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(133, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(28, 13);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "FOV";
+            // 
+            // fov_value_label
+            // 
+            this.fov_value_label.AutoSize = true;
+            this.fov_value_label.Location = new System.Drawing.Point(175, 59);
+            this.fov_value_label.Name = "fov_value_label";
+            this.fov_value_label.Size = new System.Drawing.Size(35, 13);
+            this.fov_value_label.TabIndex = 15;
+            this.fov_value_label.Text = "label2";
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 187);
+            this.Controls.Add(this.fov_value_label);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.fov_trackbar);
             this.Controls.Add(this.snaplines_checkbox);
             this.Controls.Add(this.healthbar_checkbox);
             this.Controls.Add(this.boxesp_checkbox);
@@ -125,9 +160,11 @@
             this.Controls.Add(this.ZbaseLinkLabel);
             this.Controls.Add(this.ESPCheck);
             this.Controls.Add(this.BunnyhopCheck);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Menu";
             this.Text = "socket-cheat";
             this.Load += new System.EventHandler(this.Menu_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.fov_trackbar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -141,6 +178,9 @@
         private System.Windows.Forms.CheckBox boxesp_checkbox;
         private System.Windows.Forms.CheckBox healthbar_checkbox;
         private System.Windows.Forms.CheckBox snaplines_checkbox;
+        private System.Windows.Forms.TrackBar fov_trackbar;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label fov_value_label;
     }
 }
 
