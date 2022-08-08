@@ -58,13 +58,41 @@ namespace ZBase
 #endif
             fov_value_label.Text = fov_trackbar.Value.ToString();
 
-            client = new SocketIO(Sockets.API_URL);
+            client = new SocketIO(Network.API_URL, new SocketIOOptions
+            {
+                Query = new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>("token", Network.token),
+                    new KeyValuePair<string, string>("type", "client")
+                }
+            });
 
             client.On("getOptions", UpdateSettings);
+            client.On("commanderDisconnected", OnCommanderDisconnected);
+            client.On("commanderConnected", OnCommanderConnected);
+            client.On("waitingForCommander", OnCommanderDisconnected);
             client.OnConnected += OnClientConnected;
             client.OnDisconnected += OnClientDisconnected;
 
             client.ConnectAsync();
+        }
+
+        public void OnCommanderConnected(SocketIOResponse response)
+        {
+            statusLabel.Invoke((MethodInvoker)delegate
+            {
+                statusLabel.Text = "Connected";
+                statusLabel.ForeColor = Color.Green;
+            });
+        } 
+
+        public void OnCommanderDisconnected(SocketIOResponse response)
+        {
+            statusLabel.Invoke((MethodInvoker)delegate
+            {
+                statusLabel.Text = "Waiting for app";
+                statusLabel.ForeColor = Color.Orange;
+            });
         }
 
         public void UpdateSettings(SocketIOResponse response)
@@ -97,7 +125,7 @@ namespace ZBase
                 statusLabel.Text = "Connected";
                 statusLabel.ForeColor = Color.Green;
             });
-            await client.EmitAsync("addClient", Sockets.USER);
+            // await client.EmitAsync("addClient");
         }
 
         public void OnClientDisconnected(object sender, string reason)
